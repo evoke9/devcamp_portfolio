@@ -18,4 +18,3 @@
 
 #Ignore secrets
 /config/secrets.yml
-
