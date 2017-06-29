@@ -1,12 +1,12 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   layout "blog"
-  
+
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
-    @page_title= "My Portfolio Blog"
+    @blogs = Blog.special_blogs
+    @page_title = "My Portfolio Blog"
   end
 
   # GET /blogs/1
@@ -57,6 +57,7 @@ class BlogsController < ApplicationController
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Post was removed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -66,9 +67,10 @@ class BlogsController < ApplicationController
     elsif @blog.published?
       @blog.draft!
     end
+        
     redirect_to blogs_url, notice: 'Post status has been updated.'
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
@@ -77,6 +79,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title,:body)
+      params.require(:blog).permit(:title, :body)
     end
 end
