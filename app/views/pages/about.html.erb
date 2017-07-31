@@ -1,10 +1,72 @@
-<h1>About Me</h1>
-<hr>
-<div class= "row">
-  <div class= "col-md-4">
-    <%= image_tag "profile_pic.jpg", width: 300, alt: "Profile Image" %>
-  </div>
-  <div class= "col-md-8">
-    <p>I am a high school senior currently attending West High School.</p>
+<div class="app-card-container">
+  <div class="card">
+    <h1>About Me</h1>
+    
+    <hr>
+    <div class= "row">
+      <div class= "col-md-4">
+        <%= image_tag "profile_pic.jpg", width: 300, alt: "Profile Image" %>
+        <div class="skills">
+          <%@skills.each do |skill|%>
+            <div class="skill">
+              <h4><%=skill.title%></h4>
+              <div class="progress">
+                <div
+                class="progress-bar progress-bar-striped bg-warning"
+                role="progressbar"
+                aria-valuenow="<%=skill.percent_utilized%>"
+                aria-valuemax="100"
+                style="width: <%=skill.percent_utilized%>%"
+                >
+                </div>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+        
+      <div class= "col-md-8">
+        <p>I am a high school senior currently attending West High School.</p>
+        
+        <p>
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#resume"
+            aria-expanded="false"
+            aria-controler="resume"
+          >
+            Accomplishments
+          </button>
+        
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#extracurriculars"
+            aria-expanded="false"
+            aria-controler="extracurriculars"
+          >
+            Extracurriculars
+          </button>
+        </p>
+        
+        <p>
+          <div class="collapse" id="resume">
+            <div class="card card-block">
+              Accomplishments
+            </div>
+          </div>
+          
+          <div class="collapse" id="extracurriculars"
+            <div class="card card-block">
+              Extracurriculars
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
+
